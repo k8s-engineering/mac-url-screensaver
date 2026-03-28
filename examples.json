@@ -1,0 +1,9 @@
+[
+    { "url": "https://grafana.home/playlists/play/1?kiosk=tv&autofitpanels", "duration": -1 },
+    { "url": "https://grafana.home/playlists/play/2?kiosk=tv&autofitpanels", "duration": -1 },
+    { "url": "https://grafana.home/playlists/play/3?kiosk=tv&autofitpanels", "duration": -1 },
+    { "url": "https://grafana.home/d/infrastructure?kiosk=tv", "duration": 300 },
+    { "url": "https://grafana.home/d/kubernetes?kiosk=tv", "duration": 300 },
+    { "url": "https://ykob.github.io/sketch-threejs/sketch/dna.html", "duration": 600 },
+    { "url": "https://ykob.github.io/sketch-threejs/sketch/sun.html", "duration": 600 }
+]
