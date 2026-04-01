@@ -189,14 +189,29 @@ static NSString *const kScreenSaverPerScreenModeKey = @"kScreenSaverPerScreenMod
 
 - (void)distributeGlobalAddressesToAllScreens {
   NSInteger count = [WVSSScreenIdentifier numberOfScreens];
+  if (self.addresses.count == 0) {
+    WVSSLog(@"Skipped distributing global addresses because global list is empty");
+    return;
+  }
+
+  NSInteger seededCount = 0;
+  NSInteger preservedCount = 0;
   for (NSInteger i = 0; i < count; i++) {
+    NSMutableArray *existing = self.screenAddresses[@(i)];
+    if (existing.count > 0) {
+      preservedCount++;
+      continue;
+    }
+
     NSMutableArray *copy = [NSMutableArray array];
     for (WVSSAddress *addr in self.addresses) {
       [copy addObject:[WVSSAddress addressWithURL:addr.url duration:addr.duration]];
     }
     self.screenAddresses[@(i)] = copy;
+    seededCount++;
   }
-  WVSSLog(@"Distributed global addresses to %ld screens", (long)count);
+  WVSSLog(@"Distributed global addresses to %ld screens (seeded=%ld, preserved=%ld)",
+          (long)count, (long)seededCount, (long)preservedCount);
 }
 
 #pragma mark - Remote Fetch

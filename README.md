@@ -57,10 +57,13 @@ bash install-from-source.sh
 1. Open **System Settings** → **Screen Saver** → select **WebViewScreenSaver**
 2. Click **Options...**
 3. Check **Per-screen URLs** to enable independent screen configuration
-4. Select a screen from the dropdown (e.g., "Screen 1 (Built-in Retina Display)")
-5. Add URLs for that screen
-6. Repeat for each screen
-7. Click **OK** to save
+4. Use the screen dropdown next to **Per-screen URLs**:
+   - **All Screens** = shared/global list
+   - **Screen N (...)** = URLs only for that specific display
+5. Select the target screen, enter a URL in the input field, then click **Add URL**
+6. To change timeout, **double-click** the value in the **Seconds** column and type a new number
+7. Repeat for each screen you want to configure
+8. Click **OK** to save
 
 ### Scripted Configuration
 

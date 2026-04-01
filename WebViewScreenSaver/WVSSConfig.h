@@ -55,7 +55,8 @@
 /// Returns the effective address list for a screen — per-screen if configured, global as fallback.
 - (NSMutableArray *)effectiveAddressesForScreenIndex:(NSInteger)screenIndex;
 
-/// Copies the global address list into all per-screen slots (convenience for initial setup).
+/// Copies global addresses into per-screen slots that are currently empty.
+/// Existing per-screen lists are preserved.
 - (void)distributeGlobalAddressesToAllScreens;
 
 @end

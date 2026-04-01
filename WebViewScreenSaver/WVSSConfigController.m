@@ -193,6 +193,9 @@ static NSString *const kTableColumnPreview = @"preview";
 #pragma mark - Multi-screen Actions
 
 - (void)perScreenToggled:(id)sender {
+  // Commit in-progress table edits before changing mode.
+  [self.sheet endEditingFor:nil];
+
   BOOL newValue = (self.perScreenCheckbox.state == NSControlStateValueOn);
   self.config.perScreenMode = newValue;
 
@@ -207,6 +210,9 @@ static NSString *const kTableColumnPreview = @"preview";
 }
 
 - (void)screenPopupChanged:(id)sender {
+  // Commit in-progress table edits before switching screen context.
+  [self.sheet endEditingFor:nil];
+
   NSInteger index = self.screenPopup.indexOfSelectedItem;
   if (index == 0) {
     self.selectedScreenIndex = -1;  // "All Screens"
@@ -266,6 +272,9 @@ static NSString *const kTableColumnPreview = @"preview";
     // URLs
     [self.urlTable setDraggingSourceOperationMask:NSDragOperationMove forLocal:YES];
     [self.urlTable registerForDraggedTypes:[NSArray arrayWithObject:kURLTableRow]];
+    [self.urlTable setTarget:self];
+    [self.urlTable setAction:@selector(urlTableClicked:)];
+    [self.urlTable setDoubleAction:@selector(urlTableDoubleClicked:)];
 
     [self.fetchURLCheckbox setIntegerValue:self.config.shouldFetchAddressList];
     [self.urlsURLField setEnabled:self.config.shouldFetchAddressList];
@@ -396,6 +405,8 @@ static NSString *const kTableColumnPreview = @"preview";
 }
 
 - (IBAction)dismissConfigSheet:(id)sender {
+  // Ensure active text edits are committed before synchronize.
+  [self.sheet endEditingFor:nil];
   [self synchronize];
   [self.delegate configController:self dismissConfigSheet:self.sheet];
 }
@@ -502,6 +513,31 @@ static NSString *const kTableColumnPreview = @"preview";
     address.duration = [textField.stringValue intValue];
     WVSSLog(@"Duration edited at row %ld: %d", (long)row, [textField.stringValue intValue]);
   }
+}
+
+/// Start editing URL/Seconds for the currently clicked cell.
+- (void)beginEditingClickedCellWithEvent:(NSEvent *)event {
+  NSInteger row = self.urlTable.clickedRow;
+  NSInteger col = self.urlTable.clickedColumn;
+  if (row < 0 || col < 0) return;
+
+  NSTableColumn *column = self.urlTable.tableColumns[col];
+  NSString *identifier = column.identifier;
+  if (!([identifier isEqual:kTableColumnURL] || [identifier isEqual:kTableColumnTime])) {
+    return;
+  }
+
+  [self.urlTable editColumn:col row:row withEvent:event select:YES];
+}
+
+/// Start editing URL/Seconds on single-click so changes don't feel delayed.
+- (void)urlTableClicked:(id)sender {
+  [self beginEditingClickedCellWithEvent:NSApp.currentEvent];
+}
+
+/// Keep double-click behavior too (same editing path).
+- (void)urlTableDoubleClicked:(id)sender {
+  [self beginEditingClickedCellWithEvent:NSApp.currentEvent];
 }
 
 - (IBAction)toggleFetchingURLs:(id)sender {
