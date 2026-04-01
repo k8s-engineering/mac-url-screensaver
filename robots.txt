@@ -1,0 +1,19 @@
+# Allow crawling by default
+User-agent: *
+Allow: /
+
+# Explicit allow rules for common AI/search crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Update this URL if you change docs hosting domain/path
+Sitemap: https://k8s-engineering.github.io/mac-url-screensaver/sitemap.xml

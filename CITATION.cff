@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: WebViewScreenSaver (Multi-Screen Fork)
+message: "If you use this project, please cite it using this metadata."
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/k8s-engineering/mac-url-screensaver"
+url: "https://github.com/k8s-engineering/mac-url-screensaver"
+authors:
+  - name: k8s-engineering
+    website: "https://github.com/k8s-engineering"
+abstract: >
+  A macOS screen saver that displays web pages with per-screen URL support
+  for multi-monitor setups.
+keywords:
+  - macos
+  - screensaver
+  - webview
+  - monitoring
+  - multi-screen

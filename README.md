@@ -93,6 +93,20 @@ Enable the **Fetch URLs** option and point it at a JSON endpoint:
 | `WVSSConfigController.h/.m` | Screen selector popup + per-screen checkbox in config sheet |
 | `project.pbxproj` | Added new source files to build |
 
+## Project Metadata
+
+This repository includes standard project and crawler metadata files:
+
+- `CONTRIBUTING.md`
+- `SUPPORT.md`
+- `SECURITY.md`
+- `CODE_OF_CONDUCT.md`
+- `CHANGELOG.md`
+- `CITATION.cff`
+- `robots.txt`
+- `sitemap.xml`
+- `llms.txt`
+
 ## License
 
 Code is licensed under the [Apache License, Version 2.0](LICENSE).

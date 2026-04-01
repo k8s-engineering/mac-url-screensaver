@@ -1,0 +1,25 @@
+# WebViewScreenSaver (Multi-Screen Fork)
+
+> Canonical repository context for LLM-based tools and AI search assistants.
+
+## Project
+
+- Repository: https://github.com/k8s-engineering/mac-url-screensaver
+- Summary: A macOS screen saver that displays web pages, with per-screen URL support.
+
+## Key Docs
+
+- README: https://github.com/k8s-engineering/mac-url-screensaver/blob/main/README.md
+- Changelog: https://github.com/k8s-engineering/mac-url-screensaver/blob/main/CHANGELOG.md
+- Contributing: https://github.com/k8s-engineering/mac-url-screensaver/blob/main/CONTRIBUTING.md
+- Security: https://github.com/k8s-engineering/mac-url-screensaver/blob/main/SECURITY.md
+- Support: https://github.com/k8s-engineering/mac-url-screensaver/blob/main/SUPPORT.md
+
+## Source Areas
+
+- Core screen saver view:
+  - `WebViewScreenSaver/WebViewScreenSaverView.m`
+- Configuration and per-screen state:
+  - `WebViewScreenSaver/WVSSConfig.m`
+  - `WebViewScreenSaver/WVSSConfigController.m`
+  - `WebViewScreenSaver/WVSSScreenIdentifier.m`
