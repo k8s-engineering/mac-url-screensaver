@@ -28,3 +28,5 @@ DerivedData/
 *.dSYM.zip
 *.dSYM# Xcode
 
+# Local AI/codex instructions (machine-specific, do not commit)
+AI_INSTRUCTIONS.local.md
